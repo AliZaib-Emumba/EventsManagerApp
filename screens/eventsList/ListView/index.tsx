@@ -46,7 +46,6 @@ const ListView = ({ navigation }: { navigation: any }) => {
     }, []);
 
     useEffect(() => {
-        console.log("Events are here" , selector.events)
         if (filterItem !== 'all') {
             let filteredArray = selector.events.filter((item: EventObj) => item.type === filterItem);
             setEventsArray(filteredArray);

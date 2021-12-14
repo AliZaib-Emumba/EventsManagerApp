@@ -88,11 +88,11 @@ export const checkForConflicts = (newEvent: EventObj, allEvents: EventObj[]) => 
   let hasConflicts: boolean = false;
   allEvents.map(item => {
     if (formatDate(item.date) === formatDate(newEvent.date)) {
-      if ((new Date(newEvent.startTime).getTime() >= new Date(item.startTime).getTime() && new Date(newEvent.startTime).getTime() <= new Date(item.endTime).getTime()) 
-      || 
-      (new Date(newEvent.endTime).getTime() >= new Date(item.startTime).getTime() && new Date(newEvent.endTime).getTime() <= new Date(item.endTime).getTime())
-      ||
-      (new Date(newEvent.startTime).getTime() <= new Date(item.startTime).getTime() && new Date(newEvent.endTime).getTime() >= new Date(item.endTime).getTime())
+      if ((new Date(newEvent.startTime).getTime() >= new Date(item.startTime).getTime() && new Date(newEvent.startTime).getTime() <= new Date(item.endTime).getTime())
+        ||
+        (new Date(newEvent.endTime).getTime() >= new Date(item.startTime).getTime() && new Date(newEvent.endTime).getTime() <= new Date(item.endTime).getTime())
+        ||
+        (new Date(newEvent.startTime).getTime() <= new Date(item.startTime).getTime() && new Date(newEvent.endTime).getTime() >= new Date(item.endTime).getTime())
       ) {
         hasConflicts = true;
         return;

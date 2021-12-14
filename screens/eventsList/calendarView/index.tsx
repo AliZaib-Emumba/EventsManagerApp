@@ -81,37 +81,37 @@ const CalendarView = ({ navigation }: { navigation: any }) => {
 
   const renderItem = ({ item }: { item: EventObj }) => {
     return (
-        <TempView>
-            <CardContainer>
-                <Header>
-                    <If condition={isUpdatingItem === item.id}>
-                        <Then>
-                            <HeadingTextField autoFocus={isUpdatingItem === item.id} value={updatingTitle} onChangeText={setUpdatingTitle} />
-                        </Then>
-                        <Else>
-                            <Heading>{item.title}</Heading>
-                        </Else>
-                    </If>
-                    <ActionButtons>
-                        <TouchableOpacity onPress={() => showConfirmationDialog(item.id)} activeOpacity={0.7}><Ionicons name="trash-outline" size={20} color="#735F8C" /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => { setIsUpdatingItem(item.id); setUpdatingTitle(item.title) }} activeOpacity={0.7}><Ionicons name="pencil-sharp" size={20} color="#735F8C" /></TouchableOpacity>
-                    </ActionButtons>
-                </Header>
-                <CardDateText>{formatDate(item.date)}</CardDateText>
-                <CardDescription>{item.description}</CardDescription>
-                <Label>Files: none</Label>
-                <If condition={isUpdatingItem === item.id}>
-                    <Then>
-                        <UpdateButtonsView>
-                            <UpdateButton onPress={() => updateItem(item.id, item.title)} ><UpdateButtonsText>Save</UpdateButtonsText></UpdateButton>
-                            <CancelButton onPress={() => setIsUpdatingItem("")}><UpdateButtonsText>Cancel</UpdateButtonsText></CancelButton>
-                        </UpdateButtonsView>
-                    </Then>
-                </If>
-            </CardContainer>
-        </TempView>
+      <TempView>
+        <CardContainer>
+          <Header>
+            <If condition={isUpdatingItem === item.id}>
+              <Then>
+                <HeadingTextField autoFocus={isUpdatingItem === item.id} value={updatingTitle} onChangeText={setUpdatingTitle} />
+              </Then>
+              <Else>
+                <Heading>{item.title}</Heading>
+              </Else>
+            </If>
+            <ActionButtons>
+              <TouchableOpacity onPress={() => showConfirmationDialog(item.id)} activeOpacity={0.7}><Ionicons name="trash-outline" size={20} color="#735F8C" /></TouchableOpacity>
+              <TouchableOpacity onPress={() => { setIsUpdatingItem(item.id); setUpdatingTitle(item.title) }} activeOpacity={0.7}><Ionicons name="pencil-sharp" size={20} color="#735F8C" /></TouchableOpacity>
+            </ActionButtons>
+          </Header>
+          <CardDateText>{formatDate(item.date)}</CardDateText>
+          <CardDescription>{item.description}</CardDescription>
+          <Label>Files: none</Label>
+          <If condition={isUpdatingItem === item.id}>
+            <Then>
+              <UpdateButtonsView>
+                <UpdateButton onPress={() => updateItem(item.id, item.title)} ><UpdateButtonsText>Save</UpdateButtonsText></UpdateButton>
+                <CancelButton onPress={() => setIsUpdatingItem("")}><UpdateButtonsText>Cancel</UpdateButtonsText></CancelButton>
+              </UpdateButtonsView>
+            </Then>
+          </If>
+        </CardContainer>
+      </TempView>
     )
-}
+  }
 
   return (
     <Container>

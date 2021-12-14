@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { setData, getData, showErrorToast, checkForConflicts} from "../utils/utils";
+import { setData, getData, showErrorToast, checkForConflicts } from "../utils/utils";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { showSuccessToast } from "../utils/utils";
 type InitialStateType = {
@@ -26,7 +26,7 @@ export const addDataToStorage = createAsyncThunk(
             let storageItem = await getData();
             if (storageItem) {
                 let data = JSON.parse(storageItem);
-                if(checkForConflicts(incomingData , data)){
+                if (checkForConflicts(incomingData, data)) {
                     throw Error
                 }
                 data.push(incomingData);
@@ -59,7 +59,7 @@ export const removeDataFromStorage = createAsyncThunk(
 
 export const updateDataInStorage = createAsyncThunk(
     'events/updateDataInStorage',
-    async (updatingItem : {itemId:string , newTitle:string} ) => {
+    async (updatingItem: { itemId: string, newTitle: string }) => {
         let storageItem = await getData();
         let data: EventObj[] = []
         if (storageItem) {
