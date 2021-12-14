@@ -1,15 +1,24 @@
 import styled from "styled-components/native" ;
+
 export const ButtonText = styled.Text({
     fontSize: 16,
     color: "white",
     fontWeight: "500"
 });
-export const SelectBox = styled.View({
+type SELECTBOXTYPE = {
+    platform :string
+}
+export const SelectBox = styled.View<SELECTBOXTYPE>(props => ({
+    height: props.platform === "ios" ? 35 : 40,
+    justifyContent: "center" , 
+    alignItems: "center" ,
+    textAlign: "center" ,
+    paddingLeft: props.platform === "ios" ? 20 : 0 ,
     width: "60%",
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 5,
-})
+}))
 export const Container = styled.View({
     paddingVertical: 20,
     paddingHorizontal: 10
@@ -40,6 +49,11 @@ export const Header = styled.View({
 })
 
 export const Heading = styled.Text({
+    color: "#735F8C",
+    fontWeight: "bold",
+    fontSize: 20
+});
+export const HeadingTextField= styled.TextInput({
     color: "#735F8C",
     fontWeight: "bold",
     fontSize: 20
@@ -75,4 +89,40 @@ export const Label = styled.Text({
 
 export const CalendarContainer = styled.View({
     marginVertical: 10,
+})
+export const FlatListContainer = styled.View({
+    paddingVertical: 10,
+    marginBottom: 15
+})
+
+export const CancelButton = styled.TouchableOpacity({
+    padding: 4 ,
+    borderRadius: 8 ,
+    backgroundColor: "#F25555",
+    marginLeft: 20
+});
+
+export const UpdateButton = styled.TouchableOpacity({
+    padding: 4,
+    borderRadius: 8 , 
+    backgroundColor: "#735F8C",
+    
+})
+
+export const UpdateButtonsText = styled.Text({
+    fontSize: 16,
+    fontWeight: 600 ,
+    color: "white",
+})
+
+export const UpdateButtonsView = styled.View({
+    marginTop: 20,
+    flexDirection: "row" , 
+    alignItems: "center"
+})
+
+export const NoEventsContainer = styled.View({
+    alignItems: "center" , 
+    justifyContent: "center" , 
+    marginTop: 25,
 })
