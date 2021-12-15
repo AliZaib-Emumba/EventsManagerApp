@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Platform } from "react-native";
 import { setData, getData, showErrorToast, checkForConflicts } from "../utils/utils";
 import { showSuccessToast } from "../utils/utils";
-import PushNotification from "react-native-push-notification";
-
+import { handleNotification as AndroidNotification } from "../src/notification.android"
+import { handleNotification as IOSNotification } from "../src/notification.ios"
 
 type InitialStateType = {
     events: EventObj[]
@@ -20,16 +21,7 @@ const initialState: InitialStateType = {
     events: []
 }
 
-const handleNotification = (item: EventObj) => {
-    var eventDate = new Date(item.startTime) ; 
-    eventDate.setMinutes(eventDate.getMinutes() - 10) ; 
-    PushNotification.localNotificationSchedule({
-        channelId: "channelid" , 
-        title: "Event in 10 minutes" ,
-        message: "You event " + item.title + " is starting in 10 minutes",
-        date: new Date(eventDate)
-    });
-}
+
 
 export const addDataToStorage = createAsyncThunk(
     'events/addDataToStorage',
@@ -45,7 +37,9 @@ export const addDataToStorage = createAsyncThunk(
                 await setData(data);
                 showSuccessToast("Event created Successfully")
             }
-            handleNotification(incomingData) ;
+            // notification function calls based on platform
+            if (Platform.OS === "ios") IOSNotification(incomingData) ;
+            else AndroidNotification(incomingData);
             return incomingData
 
         }
