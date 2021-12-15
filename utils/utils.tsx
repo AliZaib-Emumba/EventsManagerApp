@@ -101,4 +101,3 @@ export const checkForConflicts = (newEvent: EventObj, allEvents: EventObj[]) => 
   });
   return hasConflicts;
 }
-
