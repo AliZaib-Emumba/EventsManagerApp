@@ -61,6 +61,7 @@ export const HeadingTextField= styled.TextInput({
 
 export const TempView = styled.View({
     marginTop: 20,
+    padding: 10
 });
 
 export const ActionButtons = styled.View({
