@@ -17,6 +17,7 @@ export const handleNotification = (item: EventObj) => {
         channelId: "channelid" , 
         title: "Event in 10 minutes" ,
         message: "You event " + item.title + " is starting in 10 minutes",
-        date: new Date(eventDate)
+        date: new Date(eventDate) ,
+        id: item.id
     });
 }

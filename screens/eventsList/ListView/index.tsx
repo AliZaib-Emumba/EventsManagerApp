@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Picker } from "@react-native-picker/picker";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from 'react-native-picker-select';
 import { TouchableOpacity, Platform, FlatList, Alert } from "react-native";
@@ -26,7 +25,7 @@ const ListView = ({ navigation }: { navigation: any }) => {
     const selector = useSelector(selectEvent)
     const [eventsArray, setEventsArray] = useState<EventObj[]>([]);
     const dispatch = useDispatch();
-    const updateInputRef = useRef()
+
     const initializeState = async () => {
         try {
             let res = await getData();

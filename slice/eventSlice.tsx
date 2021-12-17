@@ -4,6 +4,8 @@ import { setData, getData, showErrorToast, checkForConflicts } from "../utils/ut
 import { showSuccessToast } from "../utils/utils";
 import { handleNotification as AndroidNotification } from "../src/notification.android"
 import { handleNotification as IOSNotification } from "../src/notification.ios"
+import PushNotification from "react-native-push-notification" ; 
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
 type InitialStateType = {
     events: EventObj[]
@@ -58,6 +60,12 @@ export const removeDataFromStorage = createAsyncThunk(
             data = JSON.parse(storageItem)
             data = data.filter(item => item.id !== itemId);
             await setData(data);
+            // cancelling notifications when the meeting is deleted
+            // ios
+            if(Platform.OS === "ios") PushNotificationIOS.removePendingNotificationRequests([itemId]) ;
+            // for android
+            else PushNotification.cancelLocalNotification(itemId) ;
+
             showSuccessToast("Event Deleted Successfully")
         }
         return data;
